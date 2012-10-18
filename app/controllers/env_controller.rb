@@ -1,0 +1,10 @@
+class EnvController < ApplicationController
+  def vars
+    logger.warn 'got here'
+    @env_hash = Hash[*(ENV.to_a.flatten)]
+  end
+
+  def request_info
+    @req_info = request.instance_variable_get(:@env)
+  end
+end

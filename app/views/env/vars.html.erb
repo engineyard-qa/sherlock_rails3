@@ -1,0 +1,9 @@
+<h1>Environmental Variables</h1>
+<table>
+  <tr><th align=right>Name</th><td></td><th align=left>Value</th></tr>
+  <tr>
+    <% @env_hash.keys.sort.each do |key| %>
+      <tr><td align=right valign=top><%= key -%></td><td>&nbsp;=>&nbsp;</td><td align=left><%= @env_hash[key] -%></td></tr>
+    <% end %>
+  </tr>
+</table>

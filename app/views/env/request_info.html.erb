@@ -1,0 +1,9 @@
+<h1>Request Variables</h1>
+<table>
+  <tr><th align=right>Name</th><td></td><th align=left>Value</th></tr>
+  <tr>
+    <% @req_info.keys.sort.each do |key| %>
+      <tr><td align=right valign=top><%= key -%></td><td>&nbsp;=>&nbsp;</td><td align=left><%= @req_info[key] -%></td></tr>
+    <% end %>
+  </tr>
+</table>

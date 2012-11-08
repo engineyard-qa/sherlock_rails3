@@ -6,7 +6,7 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 platform :ruby do
-  gem 'mysql2', '~> 0.2.7'
+  gem 'mysql2', '~> 0.3.0'
   gem 'pg', '~> 0.13.2'
   gem 'unicorn'
 end

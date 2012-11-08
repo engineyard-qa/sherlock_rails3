@@ -1,4 +1,6 @@
 Sherlock::Application.routes.draw do
+  get "db/process_list"
+
   #get "env/vars"
 
   #get "env/request"

@@ -1,0 +1,15 @@
+<h1>DB:process_list</h1>
+<table>
+  <tr>
+    <% @results.fields.each do |f| -%>
+      <th align=center><%= f -%></th>
+    <% end -%>
+  </tr>
+  <% @results.each do |row| %>
+    <tr>
+      <% row.each do |c| %>
+        <td><%= c -%></td>
+      <% end -%>
+    </tr>
+  <% end -%>
+</table>

@@ -11,7 +11,14 @@ class DbController < ApplicationController
       @mongo = false
     end
     
-    @memcached = Dalli::Client.new('localhost:11211')
+    begin
+      @memcached = Dalli::Client.new('localhost:11211')
+      @memcached.set('test','1123423')
+    rescue
+      @memcached = false
+    end
+    
+    
     @redis = Redis.new
     @riak = Riak::Client.new
     

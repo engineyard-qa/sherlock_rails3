@@ -1,0 +1,8 @@
+<table>
+	<tr><th>Database</th><th>Reachable?</th></tr>
+	<tr><td>MongoDB</td><td><%= @mongo %></td></tr>
+	<tr><td>Memcached</td><td><%= @memcached %></td></tr>
+	<tr><td>Redis</td><td><%= @redis.ping %></td></tr>
+	<tr><td>Riak</td><td><%= @riak.ping %></td></tr>
+	
+</table>

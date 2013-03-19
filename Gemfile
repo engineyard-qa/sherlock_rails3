@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :development do
+  gem 'sqlite3'
+end
 
 platform :ruby do
   gem 'mysql2', '~> 0.3.0'
@@ -36,3 +37,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+gem 'dalli'
+gem 'resque'
+gem 'riak-shim'
+gem 'mongo'

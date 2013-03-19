@@ -1,9 +1,13 @@
 Sherlock::Application.routes.draw do
+  get "protocol/detect"
+
+  get "protocol/force_ssl"
+
   get "db/process_list"
 
-  #get "env/vars"
+  get "env/vars"
 
-  #get "env/request"
+  get "env/request"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

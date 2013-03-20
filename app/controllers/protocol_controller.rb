@@ -2,7 +2,7 @@ class ProtocolController < ApplicationController
 
   
   def detect
-    @schema = request.ssl? ? 'HTTP' : 'HTTPS'
+    @schema = request.ssl? ? 'HTTPS' : 'HTTP'
   end
 
   def force_ssl

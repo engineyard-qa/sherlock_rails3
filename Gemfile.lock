@@ -147,6 +147,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-jdbc-adapter
+  bundler (~> 1.3.4)
   coffee-rails (~> 3.2.1)
   dalli
   jdbc-mysql

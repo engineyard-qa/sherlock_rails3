@@ -1,16 +1,30 @@
 <h1>Background Task Management</h1>
 
-<div id=process_manager>
+<div id=process-manager>
   <div class=title>Delayed Job</div>
-  <div id=processes>PID(s): <%= @dj_process_ids || "None" %></div>
+  <div id=processes>Running Processes:</div>
+  <div id=process-list>
+  <% if @running_processes.size > 0 %>
+    <% @running_processes.each do |name,details| %>
+    <div class='process-entry'>
+      <div class='process-name'><%= name %></div>
+      <div class='process-pid'>PID: <%= details[:pid] %></div>
+      <div class='process-msg'><%= details[:msg] %></div>
+    </div>
+  <% else %>
+    <div class='process-entry none'>None</div>
+  <% end %>
+  </div>
   <br />
   <div id=process_ctrl>
     <div id=process_start class='float_block left'>
       <form action='/tasks/start_proc' method=post>
         <table>
           <tr><td colspan=2><input type=submit value='Start'></td></tr>
-          <tr><td>Arguments</td><td><input width=100% name=proc_args></td></tr>
-          <tr><td>ENV_VARS</td><td><input width=100% name=proc_vars></td></tr>
+          <tr><td>Worker Group:</td><td><input width=100% name=></td></tr>
+          <tr><td>Max Priority:</td><td><input width=100% name=proc_vars></td></tr>
+          <tr><td>Min Priority:</td><td><input width=100% name=proc_vars></td></tr>
+          <tr><td>Queue Names:</td><td><input width=100% name=proc_vars></td></tr>
         </table>
       </form>
     </div>
@@ -24,7 +38,7 @@
       </form>
     </div>
     <% if @output %>
-    <div>
+    <div id='output-pane'>
       <div class='subtitle'>Output:</div>
       <pre><code><%= @output %></code></pre>
     </div>

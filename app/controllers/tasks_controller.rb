@@ -6,6 +6,40 @@ class TasksController < ApplicationController
 
     @output = Transaction.find(flash[:transaction_id]).output if flash[:transaction_id]
 
+    running_processes = Hash.new()
+
+    Dir.chdir(File.join(%w(/ var run engineyard dj) + [@app_name]))) do
+      Dir.glob('dj_*.pid').each do |f|
+       name = f.match(/^dj_(.*)\.pid$/)[1]
+       if name
+         pid = File.read(f)
+         cmdline = `cat /proc/#{pid}/cmdline` rescue nil
+         if cmdline 
+           #cmdline uses NUL chars to separate command line arguments
+           cmdline = cmdline.gsub("\x00",' ') 
+           if cmdline =~ /Delayed::/
+             max_priority = cmdline.match(/--max.*?priority=([^']*)/)[0] rescue nil
+             min_priority = cmdline.match(/--min.*?priority=([^']*)/)[0] rescue nil
+             msg = [max_priority,min_prority].colapse.join(' ')
+             running_processes[name] = {
+               :pid => pid,
+               :msg = msg
+             }
+           else
+             running_processes[name] = {
+               :pid => pid,
+               :msg => "unexpected process: #{cmdline})"
+             }
+           end
+         else
+           running_processes[name] = {
+             :pid => pid,
+             :msg => "defunct"
+           }
+         end
+       end
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -88,8 +122,7 @@ class TasksController < ApplicationController
     vars = params[:vars]
 
     # Determine app name for production or dev environments
-    app_name = ENV['PWD'].match(/\/data\/([^\/]*)\/current|.*\/([^\/]*)/)[1..2].compact.first
-    cmd = "#{vars} /engineyard/bin/dj #{app_name} start #{args}"
+    cmd = "#{vars} /engineyard/bin/dj #{@app_name} start #{args}"
     transaction = Transaction.create!(:command => cmd, :output => `#{cmd}`)
     redirect_to tasks_url, :flash => {:transaction_id => transaction.id}
   end

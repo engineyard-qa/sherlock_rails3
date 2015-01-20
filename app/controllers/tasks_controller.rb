@@ -8,37 +8,38 @@ class TasksController < ApplicationController
 
     running_processes = Hash.new()
 
-    Dir.chdir(File.join(%w(/ var run engineyard dj) + [@app_name]))) do
+    Dir.chdir(File.join(%w(/ var run engineyard dj) + [@app_name])) do
       Dir.glob('dj_*.pid').each do |f|
-       name = f.match(/^dj_(.*)\.pid$/)[1]
-       if name
-         pid = File.read(f)
-         cmdline = `cat /proc/#{pid}/cmdline` rescue nil
-         if cmdline 
-           #cmdline uses NUL chars to separate command line arguments
-           cmdline = cmdline.gsub("\x00",' ') 
-           if cmdline =~ /Delayed::/
-             max_priority = cmdline.match(/--max.*?priority=([^']*)/)[0] rescue nil
-             min_priority = cmdline.match(/--min.*?priority=([^']*)/)[0] rescue nil
-             msg = [max_priority,min_prority].colapse.join(' ')
-             running_processes[name] = {
-               :pid => pid,
-               :msg => msg
-             }
-           else
-             running_processes[name] = {
-               :pid => pid,
-               :msg => "unexpected process: #{cmdline})"
-             }
-           end
-         else
-           running_processes[name] = {
-             :pid => pid,
-             :msg => "defunct"
-           }
-         end
-       end
-
+        name = f.match(/^dj_(.*)\.pid$/)[1]
+        if name
+          pid = File.read(f)
+          cmdline = `cat /proc/#{pid}/cmdline` rescue nil
+          if cmdline 
+            #cmdline uses NUL chars to separate command line arguments
+            cmdline = cmdline.gsub("\x00",' ') 
+            if cmdline =~ /Delayed::/
+              max_priority = cmdline.match(/--max.*?priority=([^']*)/)[0] rescue nil
+              min_priority = cmdline.match(/--min.*?priority=([^']*)/)[0] rescue nil
+              msg = [max_priority,min_prority].colapse.join(' ')
+              running_processes[name] = {
+                :pid => pid,
+                :msg => msg
+              }
+            else
+              running_processes[name] = {
+                :pid => pid,
+                :msg => "unexpected process: #{cmdline})"
+              }
+            end
+          else
+            running_processes[name] = {
+              :pid => pid,
+              :msg => "defunct"
+            }
+          end
+        end
+      end
+    end
 
     respond_to do |format|
       format.html # index.html.erb

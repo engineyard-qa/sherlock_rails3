@@ -6,7 +6,7 @@ class TasksController < ApplicationController
 
     @output = Transaction.find(flash[:transaction_id]).output if flash[:transaction_id]
 
-    running_processes = Hash.new()
+    @running_processes = Hash.new()
 
     Dir.chdir(File.join(%w(/ var run engineyard dj) + [@app_name])) do
       Dir.glob('dj_*.pid').each do |f|
@@ -21,18 +21,18 @@ class TasksController < ApplicationController
               max_priority = cmdline.match(/--max.*?priority=([^']*)/)[0] rescue nil
               min_priority = cmdline.match(/--min.*?priority=([^']*)/)[0] rescue nil
               msg = [max_priority,min_prority].colapse.join(' ')
-              running_processes[name] = {
+              @running_processes[name] = {
                 :pid => pid,
                 :msg => msg
               }
             else
-              running_processes[name] = {
+              @running_processes[name] = {
                 :pid => pid,
                 :msg => "unexpected process: #{cmdline})"
               }
             end
           else
-            running_processes[name] = {
+            @running_processes[name] = {
               :pid => pid,
               :msg => "defunct"
             }

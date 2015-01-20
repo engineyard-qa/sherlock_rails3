@@ -12,7 +12,7 @@ class TasksController < ApplicationController
       Dir.glob('dj_*.pid').each do |f|
         name = f.match(/^dj_(.*)\.pid$/)[1]
         if name
-          pid = File.read(f)
+          pid = File.read(f).chomp
           cmdline = `cat /proc/#{pid}/cmdline` rescue nil
           if cmdline 
             #cmdline uses NUL chars to separate command line arguments

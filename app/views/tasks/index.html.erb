@@ -6,11 +6,11 @@
   <div id=process-list>
   <% if @running_processes.size > 0 %>
     <% @running_processes.each do |name,details| %>
-    <div class='process-entry'>
-      <div class='process-name'><%= name %></div>
-      <div class='process-pid'>PID: <%= details[:pid] %></div>
-      <div class='process-msg'><%= details[:msg] %></div>
-    </div>
+    <dl class='process-entry'>
+      <dt class='process-name'><%= name %></dt>
+      <dd class='process-pid'>PID: <%= details[:pid] %></dd>
+      <dd class='process-msg'><%= details[:msg] %></dd>
+    </dl>
     <% end %>
   <% else %>
     <div class='process-entry none'>None</div>

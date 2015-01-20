@@ -20,7 +20,7 @@ class TasksController < ApplicationController
             if cmdline =~ /Delayed::/
               max_priority = cmdline.match(/--max.*?priority=([^']*)/)[0] rescue nil
               min_priority = cmdline.match(/--min.*?priority=([^']*)/)[0] rescue nil
-              msg = [max_priority,min_prority].colapse.join(' ')
+              msg = [max_priority,min_priority].colapse.join(' ')
               @running_processes[name] = {
                 :pid => pid,
                 :msg => msg

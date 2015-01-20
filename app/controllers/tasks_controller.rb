@@ -23,7 +23,7 @@ class TasksController < ApplicationController
              msg = [max_priority,min_prority].colapse.join(' ')
              running_processes[name] = {
                :pid => pid,
-               :msg = msg
+               :msg => msg
              }
            else
              running_processes[name] = {

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  queue: MyString
+  duration: 1
+  enqueued_at: 2015-01-12 16:19:50
+  started_at: 2015-01-12 16:19:50
+  finished_at: 2015-01-12 16:19:50
+
+two:
+  queue: MyString
+  duration: 1
+  enqueued_at: 2015-01-12 16:19:50
+  started_at: 2015-01-12 16:19:50
+  finished_at: 2015-01-12 16:19:50

@@ -1,0 +1,65 @@
+<h1>Background Task Management</h1>
+
+<div id=process_manager>
+  <div class=title>Delayed Job</div>
+  <div id=processes>PID(s): <%= @dj_process_ids || "None" %></div>
+  <br />
+  <div id=process_ctrl>
+    <div id=process_start class='float_block left'>
+      <form action='/tasks/start_proc' method=post>
+        <table>
+          <tr><td colspan=2><input type=submit value='Start'></td></tr>
+          <tr><td>Arguments</td><td><input width=100% name=proc_args></td></tr>
+          <tr><td>ENV_VARS</td><td><input width=100% name=proc_vars></td></tr>
+        </table>
+      </form>
+    </div>
+    <div id=process_start class='float_block left'>
+      <form action='/tasks/stop_proc' method=post>
+        <table>
+          <tr><td colspan=2><input type=submit value='Stop'></td></tr>
+          <tr><td>Arguments</td><td><input width=100% name=proc_args></td></tr>
+          <tr><td>ENV_VARS</td><td><input width=100% name=proc_vars></td></tr>
+        </table>
+      </form>
+    </div>
+    <% if @output %>
+    <div>
+      <div class='subtitle'>Output:</div>
+      <pre><code><%= @output %></code></pre>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div id=task_manager>
+<table>
+  <tr>
+    <th>Queue</th>
+    <th>Duration</th>
+    <th>Enqueued at</th>
+    <th>Started at</th>
+    <th>Finished at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.queue %></td>
+    <td><%= task.duration %></td>
+    <td><%= task.enqueued_at %></td>
+    <td><%= task.started_at %></td>
+    <td><%= task.finished_at %></td>
+    <td><%= link_to 'Show', task %></td>
+    <td><%= link_to 'Edit', edit_task_path(task) %></td>
+    <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Task', new_task_path %>
+</div>

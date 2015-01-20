@@ -11,3 +11,15 @@
  *= require_self
  *= require_tree .
  */
+ .float_block.left {
+   float:left;
+ }
+
+ .float_block {
+   overflow: auto;
+ }
+
+ div#process_manager > div, div#output-pane, div#task_manager {
+   clear:both;
+ }
+

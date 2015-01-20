@@ -1,4 +1,11 @@
 Sherlock::Application.routes.draw do
+  resources :tasks do
+    collection do 
+      post 'start_proc'
+      post 'stop_proc'
+    end
+  end
+
   get "db/process_list"
 
   #get "env/vars"

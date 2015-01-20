@@ -5,9 +5,11 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+
 platform :ruby do
-  gem 'mysql2', '~> 0.3.0'
-  gem 'pg', '~> 0.13.2'
+  gem 'mysql2', '~> 0.3.0', :group => :production
+  gem 'pg', '~> 0.13.2', :group => :production
+  gem 'sqlite3', '1.3.5', :group => [:development, :test]
   gem 'unicorn'
 end
 
@@ -21,6 +23,8 @@ platforms :jruby do
   gem 'thor'
 end
 
+gem 'daemons'
+gem 'delayed_job_active_record'
 gem 'puma'
 
 # Gems used only for assets and not required

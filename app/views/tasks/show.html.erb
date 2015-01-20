@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Queue:</b>
+  <%= @task.queue %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%= @task.duration %>
+</p>
+
+<p>
+  <b>Enqueued at:</b>
+  <%= @task.enqueued_at %>
+</p>
+
+<p>
+  <b>Started at:</b>
+  <%= @task.started_at %>
+</p>
+
+<p>
+  <b>Finished at:</b>
+  <%= @task.finished_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

@@ -1,6 +1,5 @@
 class EnvController < ApplicationController
   def vars
-    logger.warn 'got here'
     @env_hash = Hash[*(ENV.to_a.flatten)]
   end
 

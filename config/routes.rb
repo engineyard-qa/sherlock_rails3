@@ -1,4 +1,7 @@
 Sherlock::Application.routes.draw do
+  get "traffic/long_running_action"
+  post "traffic/long_running_action"
+
   get "protocol/detect"
 
   get "protocol/force_ssl"

@@ -1,0 +1,10 @@
+<h1>Traffic: Generate a long-running action</h1>
+<% if @msg %>
+  <div class=notice><%= @msg %></div>
+<% end %>
+
+<%= form_tag do %>
+  <%= label_tag(:q, "Duration of action (seconds):") %>
+  <%= text_field_tag(:duration) %>
+  <%= submit_tag("Run") %>
+<% end %>

@@ -33,6 +33,8 @@ GEM
     bson (1.8.0)
       activesupport
     builder (3.0.4)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -62,6 +64,7 @@ GEM
       bson (~> 1.8.0)
     multi_json (1.3.6)
     mysql2 (0.3.11)
+    numerizer (0.1.1)
     pg (0.13.2)
     polyglot (0.3.3)
     puma (1.6.3)
@@ -147,6 +150,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-jdbc-adapter
+  chronic_duration
   coffee-rails (~> 3.2.1)
   dalli
   jdbc-mysql

@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+div.notice {
+  border: 2px solid green;
+  color: green;
+  background-color: lightgreen;
+  padding: 5px;
+  margin-bottom: 10px;
+}

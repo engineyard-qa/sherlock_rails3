@@ -9,6 +9,14 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+if File.exists?(File.expand_path('../env.yml', __FILE__))
+  config = YAML.load(File.read(File.expand_path('../env.yml', __FILE__)))
+  config.merge! config.fetch(Rails.env, {})
+  config.each do |key, value|
+    ENV[key] = value.to_s unless value.kind_of? Hash
+  end
+end
+
 module Sherlock
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
